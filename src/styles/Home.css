@@ -1,0 +1,16 @@
+.header-main {
+  text-align: center;
+}
+
+.header-info {
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.zipform-container {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+}
