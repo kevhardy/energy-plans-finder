@@ -1,0 +1,17 @@
+.container-header {
+  display: flex;
+  align-items: center;
+}
+
+.header-home {
+  flex: 1;
+  margin: calc(2rem - 0.14285714em) 0 1rem;
+}
+
+.header-results {
+  margin: 0 auto;
+}
+
+.header-spacer {
+  flex: 1;
+}

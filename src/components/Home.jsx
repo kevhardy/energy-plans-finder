@@ -5,10 +5,10 @@ import ZipcodeForm from './ZipcodeForm';
 
 export default function Home(props) {
   return (
-    <div>
+    <div className="home-main">
       <Divider hidden />
 
-      <Header className="header-main" as="h1" center>
+      <Header className="header-main" as="h1">
         Texas Energy Plans
       </Header>
 

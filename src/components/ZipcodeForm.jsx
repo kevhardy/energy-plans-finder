@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
+import { withRouter } from 'react-router-dom';
 import '../styles/ZipcodeForm.css';
 import { FormContext } from './FormContext';
 import { Form, Input, Icon } from 'semantic-ui-react';
 
-export default function ZipcodeForm() {
+function ZipcodeForm(props) {
   const [zipcode, setZipcode] = useState('');
   const { handleZipSubmit } = useContext(FormContext);
 
@@ -16,8 +17,8 @@ export default function ZipcodeForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    //handleZipSubmit(zipcode);
-    //history.push(`app/results?=${zipcode}`);
+    props.history.push(`/app/results?zipcode=${zipcode}`);
+    handleZipSubmit(zipcode);
   }
 
   return (
@@ -42,3 +43,5 @@ export default function ZipcodeForm() {
     </div>
   );
 }
+
+export default withRouter(ZipcodeForm);
