@@ -13,7 +13,33 @@ export default function App() {
     console.log('zip code submitted.');
   }
 
-  function fetchPlans(zipcode) {}
+  function fetchPlans(zipcode) {
+
+    try {
+      setIsLoading(true);
+      const ajax = await fetch(
+        `https://cors-anywhere.herokuapp.com/http://www.powertochoose.org/en-us/service/v1/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            parameters: {
+              method: 'plans',
+              zip_code: zipcode
+            }
+          })
+        }
+      );
+      const data = await ajax.json();
+      console.log(data);
+      setPlans(data);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <BrowserRouter>
