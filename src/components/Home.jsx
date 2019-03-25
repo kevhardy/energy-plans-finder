@@ -17,7 +17,7 @@ export default function Home(props) {
         your <strong>ZIP code</strong> down below.
       </p>
 
-      <Divider hidden horizontal />
+      <Divider hidden />
       <ZipcodeForm />
     </div>
   );

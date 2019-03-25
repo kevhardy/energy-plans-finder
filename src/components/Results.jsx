@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/Results.css';
 import { Divider, Header, Icon } from 'semantic-ui-react';
 import ZipcodeForm from './ZipcodeForm';
@@ -23,7 +23,7 @@ export default function Results(props) {
       </div>
 
       <ZipcodeForm />
-      <Divider hidden />
+
       <PlanViewer />
     </div>
   );

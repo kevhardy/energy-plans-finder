@@ -10,6 +10,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleZipSubmit(zipcode) {
+    // Regex for 5 digit zip code
+    if (!/^[0-9]{5}$/.test(zipcode)) setPlans([]);
     fetchPlans(zipcode);
   }
 
@@ -33,6 +35,7 @@ export default function App() {
       );
       const data = await ajax.json();
       setPlans(data);
+      console.log(data);
       setIsLoading(false);
     } catch (e) {
       console.log(e);

@@ -6,6 +6,7 @@
 .header-home {
   flex: 1;
   margin: calc(2rem - 0.14285714em) 0 1rem;
+  padding-left: 5%;
 }
 
 .header-results {
@@ -14,4 +15,5 @@
 
 .header-spacer {
   flex: 1;
+  padding-right: 5%;
 }
