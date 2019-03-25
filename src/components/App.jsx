@@ -10,7 +10,6 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   function handleZipSubmit(zipcode) {
-    console.log('zip code submitted.');
     fetchPlans(zipcode);
   }
 
@@ -33,7 +32,6 @@ export default function App() {
         }
       );
       const data = await ajax.json();
-      console.log(data);
       setPlans(data);
       setIsLoading(false);
     } catch (e) {

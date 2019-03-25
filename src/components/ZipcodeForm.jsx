@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 import '../styles/ZipcodeForm.css';
 import { FormContext } from './FormContext';
 import { Form, Input, Icon } from 'semantic-ui-react';
@@ -7,6 +8,16 @@ import { Form, Input, Icon } from 'semantic-ui-react';
 function ZipcodeForm(props) {
   const [zipcode, setZipcode] = useState('');
   const { isLoading, handleZipSubmit } = useContext(FormContext);
+
+  useEffect(() => {
+    const { zipcode: initialZipcode } = queryString.parse(
+      props.location.search
+    );
+    if (initialZipcode) {
+      setZipcode(initialZipcode);
+      handleZipSubmit(initialZipcode);
+    }
+  }, []);
 
   function handleInputChange(e) {
     const regex = /^[0-9\b]+$/;
