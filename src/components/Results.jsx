@@ -3,6 +3,7 @@ import '../styles/Results.css';
 import queryString from 'query-string';
 import { Divider, Header, Icon } from 'semantic-ui-react';
 import ZipcodeForm from './ZipcodeForm';
+import PlanViewer from './PlanViewer';
 
 export default function Results(props) {
   useEffect(() => {
@@ -28,6 +29,8 @@ export default function Results(props) {
       </div>
 
       <ZipcodeForm />
+      <Divider hidden />
+      <PlanViewer />
     </div>
   );
 }

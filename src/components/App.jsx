@@ -6,15 +6,15 @@ import Home from './Home';
 import Results from './Results';
 
 export default function App() {
-  //const [plans, setPlans] = useState([]);
-  //const [isLoading, setIsLoading] = useState(false);
+  const [plans, setPlans] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleZipSubmit(zipcode) {
     console.log('zip code submitted.');
+    fetchPlans(zipcode);
   }
 
-  function fetchPlans(zipcode) {
-
+  async function fetchPlans(zipcode) {
     try {
       setIsLoading(true);
       const ajax = await fetch(
@@ -43,7 +43,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <FormContext.Provider value={{ handleZipSubmit }}>
+      <FormContext.Provider value={{ plans, isLoading, handleZipSubmit }}>
         <main>
           <Route exact path="/" component={Home} />
           <Route path="/app/results" component={Results} />

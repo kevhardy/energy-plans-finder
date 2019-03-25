@@ -6,7 +6,7 @@ import { Form, Input, Icon } from 'semantic-ui-react';
 
 function ZipcodeForm(props) {
   const [zipcode, setZipcode] = useState('');
-  const { handleZipSubmit } = useContext(FormContext);
+  const { isLoading, handleZipSubmit } = useContext(FormContext);
 
   function handleInputChange(e) {
     const regex = /^[0-9\b]+$/;
@@ -34,6 +34,7 @@ function ZipcodeForm(props) {
             autoComplete="off"
             focus
             placeholder="Enter Zip code"
+            loading={isLoading}
           >
             <input />
             <Icon name="search" link onClick={handleSubmit} />
