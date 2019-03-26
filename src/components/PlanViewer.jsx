@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Table, Loader } from 'semantic-ui-react';
 import '../styles/PlanViewer.css';
 import { FormContext } from './FormContext';
-import Plan from './Plan';
+import Plan from './Plan/Plan';
 
 export default function PlanViewer() {
   const { plans, setPlans, isLoading } = useContext(FormContext);
@@ -12,6 +12,7 @@ export default function PlanViewer() {
   });
 
   function handleSort(clickedColumn) {
+    // First time column is clicked, sort ascending
     if (sortedState.column !== clickedColumn) {
       setSortState({
         column: clickedColumn,
@@ -32,6 +33,7 @@ export default function PlanViewer() {
       return;
     }
 
+    // If column is clicked again, reverses order and sets direction state
     setPlans(plans.reverse());
     setSortState({
       column: sortedState.column,
@@ -47,20 +49,17 @@ export default function PlanViewer() {
   return (
     <div className="plan-viewer">
       <Table sortable unstackable>
-        <Table.Header>
+        <Table.Header className="plan-header">
           <Table.Row disabled={isLoading}>
-            <Table.HeaderCell collapsing textAlign="left">
-              Company
-            </Table.HeaderCell>
-            <Table.HeaderCell />
+            <Table.HeaderCell textAlign="left">Company</Table.HeaderCell>
+            {/* <Table.HeaderCell /> */}
             <Table.HeaderCell
               sorted={
                 sortedState.column === '500' ? sortedState.direction : null
               }
               onClick={() => handleSort('500')}
               collapsing
-              textAlign="right"
-              singleLine
+              textAlign="center"
             >
               500 kWh
             </Table.HeaderCell>
@@ -70,25 +69,21 @@ export default function PlanViewer() {
               }
               onClick={() => handleSort('1000')}
               collapsing
-              textAlign="right"
-              singleLine
+              textAlign="center"
             >
               1000 kWh
             </Table.HeaderCell>
-            <Table.HeaderCell
+            {/* <Table.HeaderCell
               sorted={
                 sortedState.column === '2000' ? sortedState.direction : null
               }
               onClick={() => handleSort('2000')}
               collapsing
               textAlign="right"
-              singleLine
             >
               2000 kWh
-            </Table.HeaderCell>
-            <Table.HeaderCell collapsing textAlign="right" singleLine>
-              Compare
-            </Table.HeaderCell>
+            </Table.HeaderCell> */}
+            <Table.HeaderCell collapsing textAlign="center" />
           </Table.Row>
         </Table.Header>
         <Table.Body>

@@ -35,12 +35,6 @@ export default function App() {
         }
       );
       let data = await ajax.json();
-      //data = data.splice(0, 20);
-      console.table(
-        data.map(plan => {
-          return { company: plan.company_name, rating: plan.rating_total };
-        })
-      );
       setPlans(data);
       setIsLoading(false);
     } catch (e) {
