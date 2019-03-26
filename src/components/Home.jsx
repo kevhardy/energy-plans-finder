@@ -9,7 +9,7 @@ export default function Home(props) {
       <Divider hidden />
 
       <Header className="header-main" as="h1">
-        Texas Energy Plans
+        TX Energy Plans
       </Header>
 
       <p className="header-info">

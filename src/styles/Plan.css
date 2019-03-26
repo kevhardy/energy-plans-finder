@@ -5,3 +5,49 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+/* turns off top borders for semantics ui */
+.ui.table tr td {
+  border-top: 0;
+}
+
+.accordion-row {
+  border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+  border-bottom-style: solid;
+  border-bottom-color: rgba(34, 36, 38, 0.1);
+}
+
+.accordion-row:hover {
+  background-color: #f5fbff;
+}
+
+.plan-dropdown {
+  margin: 0 auto;
+  width: 10em;
+}
+
+.plan-dropup {
+  border-radius: 0.28571429rem;
+  transform: rotate(180deg);
+  width: 100%;
+}
+
+.dropdown-icon {
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+.dropup-icon {
+  margin: 0 auto !important;
+  display: block !important;
+}
+
+.hidden {
+  padding: 0 !important;
+  height: 0;
+  visibility: hidden;
+}
+
+.accordion-cursor {
+  cursor: pointer;
+}

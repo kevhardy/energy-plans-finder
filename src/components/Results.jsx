@@ -17,7 +17,7 @@ export default function Results(props) {
           <Icon name="home" size="large" link onClick={goHome} />
         </div>
         <Header className="header-results" as="h1">
-          Texas Energy Plans
+          TX Energy Plans
         </Header>
         <div className="header-spacer" />
       </div>

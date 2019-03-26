@@ -8,6 +8,7 @@ import Results from './Results';
 export default function App() {
   const [plans, setPlans] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [compareList, setCompareList] = useState([]);
 
   function handleZipSubmit(zipcode) {
     // Regex for 5 digit zip code
@@ -33,9 +34,14 @@ export default function App() {
           })
         }
       );
-      const data = await ajax.json();
+      let data = await ajax.json();
+      //data = data.splice(0, 20);
+      console.table(
+        data.map(plan => {
+          return { company: plan.company_name, rating: plan.rating_total };
+        })
+      );
       setPlans(data);
-      console.log(data);
       setIsLoading(false);
     } catch (e) {
       console.log(e);
@@ -44,7 +50,16 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <FormContext.Provider value={{ plans, isLoading, handleZipSubmit }}>
+      <FormContext.Provider
+        value={{
+          plans,
+          setPlans,
+          isLoading,
+          compareList,
+          setCompareList,
+          handleZipSubmit
+        }}
+      >
         <main>
           <Route exact path="/" component={Home} />
           <Route path="/app/results" component={Results} />

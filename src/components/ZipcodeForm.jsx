@@ -10,14 +10,13 @@ function ZipcodeForm(props) {
   const { isLoading, handleZipSubmit } = useContext(FormContext);
 
   useEffect(() => {
-    if (props.location.pathname === '/app/results' && !isLoading) {
+    if (props.location.pathname === '/app/results') {
       const { zipcode: initialZipcode } = queryString.parse(
         props.location.search
       );
-      if (initialZipcode) {
-        setZipcode(initialZipcode);
-        handleZipSubmit(initialZipcode);
-      }
+
+      if (initialZipcode) setZipcode(initialZipcode);
+      if (!isLoading) handleZipSubmit(initialZipcode);
     }
   }, []);
 
@@ -30,7 +29,6 @@ function ZipcodeForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('called 2');
     props.history.push(`/app/results?zipcode=${zipcode}`);
     handleZipSubmit(zipcode);
   }
