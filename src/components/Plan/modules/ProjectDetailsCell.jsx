@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, List } from 'semantic-ui-react';
+import { List, Table } from 'semantic-ui-react';
 
 export default function ProjectDetailsCell(props) {
   const { name } = props;

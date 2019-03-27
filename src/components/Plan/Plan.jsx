@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import AnimateHeight from 'react-animate-height';
+import { Accordion, Checkbox, Icon, Table } from 'semantic-ui-react';
+import '../../styles/Plan.css';
 import { FormContext } from '../FormContext';
-import { Table, Icon, Accordion, Checkbox } from 'semantic-ui-react';
 import CompanyCell from './modules/CompanyCell';
 import KwhPriceCell from './modules/KwhPriceCell';
 import ProjectDetailsCell from './modules/ProjectDetailsCell';
-import '../../styles/Plan.css';
-import AnimateHeight from 'react-animate-height';
 
 export default function Plan(props) {
   const [active, setActive] = useState(0); //Accordion active state (more details)

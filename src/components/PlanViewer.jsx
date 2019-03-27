@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Table, Loader } from 'semantic-ui-react';
+import { Loader, Table } from 'semantic-ui-react';
 import '../styles/PlanViewer.css';
 import { FormContext } from './FormContext';
 import Plan from './Plan/Plan';

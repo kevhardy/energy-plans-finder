@@ -1,8 +1,8 @@
 import React from 'react';
-import '../styles/Results.css';
 import { Divider, Header, Icon } from 'semantic-ui-react';
-import ZipcodeForm from './ZipcodeForm';
+import '../styles/Results.css';
 import PlanViewer from './PlanViewer';
+import ZipcodeForm from './ZipcodeForm';
 
 export default function Results(props) {
   function goHome() {

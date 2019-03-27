@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Icon, Rating, Popup } from 'semantic-ui-react';
+import { Icon, Popup, Rating, Table } from 'semantic-ui-react';
 
 export default function CompanyCell(props) {
   const { logo, rating } = props;

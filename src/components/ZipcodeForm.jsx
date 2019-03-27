@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import React, { useContext, useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import { Form, Icon, Input } from 'semantic-ui-react';
 import '../styles/ZipcodeForm.css';
 import { FormContext } from './FormContext';
-import { Form, Input, Icon } from 'semantic-ui-react';
 
 function ZipcodeForm(props) {
   const [zipcode, setZipcode] = useState('');

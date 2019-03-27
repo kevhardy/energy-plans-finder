@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Header } from 'semantic-ui-react';
+import { Header, Table } from 'semantic-ui-react';
 
 export default function KwhPriceCell(props) {
   const { sortedState, price, priceLevel } = props;
