@@ -15,7 +15,7 @@ export default function KwhPriceCell(props) {
         sortedState.direction === 'descending'
       }
     >
-      <Header as="h3" textAlign="center">
+      <Header as="h4" textAlign="center">
         {price.toFixed(1)}¢
       </Header>
     </Table.Cell>

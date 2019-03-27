@@ -11,7 +11,6 @@ export default function Plan(props) {
   const [isChecked, setIsChecked] = useState(false); //Compare checked state
   const { compareList, setCompareList } = useContext(FormContext);
 
-  /* Props */
   // Which column and how it's sorted
   const { sortedState } = props;
 
@@ -57,12 +56,12 @@ export default function Plan(props) {
         priceLevel={'1000'}
         sortedState={sortedState}
       />
-      {/* <KwhPriceCell
-            price={price_kwh2000}
-            priceLevel={'2000'}
-            sortedState={sortedState}
-            /> */}
-      <Table.Cell textAlign="center">
+      <KwhPriceCell
+        price={price_kwh2000}
+        priceLevel={'2000'}
+        sortedState={sortedState}
+      />
+      <Table.Cell className="checkbox-cell" textAlign="right" collapsing>
         <Checkbox onChange={handleCompareClick} />
       </Table.Cell>
     </Table.Row>

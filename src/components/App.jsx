@@ -11,14 +11,14 @@ export default function App() {
   const [compareList, setCompareList] = useState([]);
 
   function handleZipSubmit(zipcode) {
+    setIsLoading(true);
     // Regex for 5 digit zip code
     if (!/^[0-9]{5}$/.test(zipcode)) setPlans([]);
-    fetchPlans(zipcode);
+    else fetchPlans(zipcode);
   }
 
   async function fetchPlans(zipcode) {
     try {
-      setIsLoading(true);
       const ajax = await fetch(
         `https://cors-anywhere.herokuapp.com/http://www.powertochoose.org/en-us/service/v1/`,
         {

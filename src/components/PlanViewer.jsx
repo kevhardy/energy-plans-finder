@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Table, Loader } from 'semantic-ui-react';
 import '../styles/PlanViewer.css';
 import { FormContext } from './FormContext';
@@ -11,6 +11,7 @@ export default function PlanViewer() {
     direction: null
   });
 
+  // TODO: sorting plans and then searching for new zipcode will break sort
   function handleSort(clickedColumn) {
     // First time column is clicked, sort ascending
     if (sortedState.column !== clickedColumn) {
@@ -49,10 +50,9 @@ export default function PlanViewer() {
   return (
     <div className="plan-viewer">
       <Table sortable unstackable>
-        <Table.Header className="plan-header">
+        <Table.Header>
           <Table.Row disabled={isLoading}>
             <Table.HeaderCell textAlign="left">Company</Table.HeaderCell>
-            {/* <Table.HeaderCell /> */}
             <Table.HeaderCell
               sorted={
                 sortedState.column === '500' ? sortedState.direction : null
@@ -61,7 +61,9 @@ export default function PlanViewer() {
               collapsing
               textAlign="center"
             >
-              500 kWh
+              500
+              <br />
+              <span style={{ fontSize: '.7rem' }}>kWh</span>
             </Table.HeaderCell>
             <Table.HeaderCell
               sorted={
@@ -71,19 +73,23 @@ export default function PlanViewer() {
               collapsing
               textAlign="center"
             >
-              1000 kWh
+              1000
+              <br />
+              <span style={{ fontSize: '.7rem' }}>kWh</span>
             </Table.HeaderCell>
-            {/* <Table.HeaderCell
+            <Table.HeaderCell
               sorted={
                 sortedState.column === '2000' ? sortedState.direction : null
               }
               onClick={() => handleSort('2000')}
               collapsing
-              textAlign="right"
+              textAlign="center"
             >
-              2000 kWh
-            </Table.HeaderCell> */}
-            <Table.HeaderCell collapsing textAlign="center" />
+              2000
+              <br />
+              <span style={{ fontSize: '.7rem' }}>kWh</span>
+            </Table.HeaderCell>
+            <Table.HeaderCell />
           </Table.Row>
         </Table.Header>
         <Table.Body>

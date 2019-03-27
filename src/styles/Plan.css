@@ -11,6 +11,18 @@
   border-top: 0;
 }
 
+/* removes padding from cell with checkbox */
+.ui.table td.checkbox-cell {
+  padding-right: 3px;
+  padding-left: 0;
+}
+
+/* removes padding from cell with checkbox */
+.ui.table td.company-cell {
+  padding-right: 0;
+  padding-left: 3px;
+}
+
 .accordion-row {
   border-bottom: 1px solid rgba(34, 36, 38, 0.1);
   border-bottom-style: solid;
