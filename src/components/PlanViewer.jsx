@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Table, Loader } from 'semantic-ui-react';
 import '../styles/PlanViewer.css';
 import { FormContext } from './FormContext';

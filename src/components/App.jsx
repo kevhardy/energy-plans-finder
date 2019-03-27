@@ -35,6 +35,7 @@ export default function App() {
         }
       );
       let data = await ajax.json();
+      console.dir(data);
       setPlans(data);
       setIsLoading(false);
     } catch (e) {

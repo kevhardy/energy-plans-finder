@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { FormContext } from '../FormContext';
-import { Table, Icon, List, Accordion, Checkbox } from 'semantic-ui-react';
+import { Table, Icon, Accordion, Checkbox } from 'semantic-ui-react';
 import CompanyCell from './modules/CompanyCell';
 import KwhPriceCell from './modules/KwhPriceCell';
+import ProjectDetailsCell from './modules/ProjectDetailsCell';
 import '../../styles/Plan.css';
 import AnimateHeight from 'react-animate-height';
 
@@ -17,6 +18,7 @@ export default function Plan(props) {
   // All details of current plan
   const {
     plan_id,
+    plan_name,
     company_logo,
     rating_total,
     price_kwh500,
@@ -67,15 +69,38 @@ export default function Plan(props) {
     </Table.Row>
   );
 
+  // Table of details that goes inside accordion
+  const moreDetailsTable = (
+    <Table unstackable>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Plan Details</Table.HeaderCell>
+          <Table.HeaderCell>Pricing</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        <Table.Row>
+          <ProjectDetailsCell name={plan_name} />
+          <Table.Cell>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
+            esse culpa dicta illo. Sit earum, vitae voluptate repellat hic nihil
+            sed, sunt eligendi non commodi ullam corporis distinctio sequi
+            natus.
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    </Table>
+  );
+
   // JSX for displaying plan details that get pushed into accordion
   const moreDetails = (
     <Table.Row positive={isChecked}>
       <Table.Cell
         colSpan="12"
         className="accordion-row"
-        style={{ paddingBottom: '0', paddingTop: '0' }}
+        style={{ padding: '0', paddingTop: '0' }}
       >
-        <Accordion className="accordion-cursor" onClick={handleAccordionClick}>
+        <Accordion className="accordion-cursor">
           <Accordion.Title
             className={'plan-dropdown' + (active === 1 ? ' hidden' : '')}
             active={active !== 1}
@@ -99,13 +124,11 @@ export default function Plan(props) {
               duration={300}
               height={active ? 'auto' : 0}
             >
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-                at, quae inventore quam laborum voluptates repudiandae cumque?
-                Explicabo ducimus aspernatur voluptatibus mollitia, possimus qui
-                eum nobis perspiciatis, necessitatibus, aliquam tempore!
-              </p>
-              <div className="plan-dropdown plan-dropup accordion-cursor">
+              {moreDetailsTable}
+              <div
+                className="plan-dropdown plan-dropup accordion-cursor"
+                onClick={handleAccordionClick}
+              >
                 <Icon
                   className="dropup-icon"
                   name="dropdown"
