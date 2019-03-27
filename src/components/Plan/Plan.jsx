@@ -71,7 +71,7 @@ export default function Plan(props) {
 
   // Table of details that goes inside accordion
   const moreDetailsTable = (
-    <Table unstackable>
+    <Table className="details-table" unstackable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Plan Details</Table.HeaderCell>

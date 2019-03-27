@@ -11,13 +11,13 @@
   border-top: 0;
 }
 
-/* removes padding from cell with checkbox */
+/* overrides padding from  cell with checkbox */
 .ui.table td.checkbox-cell {
   padding-right: 3px;
   padding-left: 0;
 }
 
-/* removes padding from cell with checkbox */
+/* overrides padding from  cell with company */
 .ui.table td.company-cell {
   padding-right: 0;
   padding-left: 3px;
@@ -62,6 +62,18 @@
   visibility: hidden;
 }
 
-/* .accordion-cursor {
-  cursor: pointer;
-} */
+.ui.table.details-table {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+
+/* Overriding sortable tag on nested table from semantics ui */
+.ui.table.details-table thead th {
+  cursor: default;
+}
+
+/* Prevents table headers from appearing sortable in nested table */
+.ui.table.details-table thead th:hover {
+  background: rgb(249, 250, 251);
+  color: rgba(0, 0, 0, 0.87);
+}
