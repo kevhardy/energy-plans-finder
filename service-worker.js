@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/energy-plans-viewer/precache-manifest.ca99b6795c07768b16b2f3a16bada9bf.js"
+  "/energy-plans-viewer/precache-manifest.a88befb20e0a61a66b6498841834c557.js"
 );
 
 workbox.clientsClaim();
