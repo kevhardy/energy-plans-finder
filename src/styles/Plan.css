@@ -30,20 +30,37 @@
 }
 
 .plan-dropdown:hover {
-  background-color: #f5fbff;
+  background-color: #e2f2fd;
   cursor: pointer;
 }
 
 .plan-dropdown {
+  background-color: rgb(249, 250, 251);
   margin: 0 auto;
   width: 10em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+  border-left: 1px solid rgba(34, 36, 38, 0.15);
+  border-right: 1px solid rgba(34, 36, 38, 0.15);
 }
 
 .plan-dropup {
-  border-radius: 0.28571429rem;
+  background-color: rgb(249, 250, 251);
   transform: rotate(180deg);
-  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  border-left: 1px solid rgba(34, 36, 38, 0.15);
+  border-right: 1px solid rgba(34, 36, 38, 0.15);
+  margin: 0 auto;
+  width: 10em;
   height: 2rem;
+}
+
+.plan-dropup:hover {
+  background-color: #e2f2fd;
+  cursor: pointer;
 }
 
 .dropdown-icon {
@@ -65,6 +82,7 @@
 .ui.table.details-table {
   border-left-width: 0;
   border-right-width: 0;
+  font-size: 0.85em;
 }
 
 /* Overriding sortable tag on nested table from semantics ui */

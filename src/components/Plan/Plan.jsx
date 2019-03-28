@@ -5,7 +5,8 @@ import '../../styles/Plan.css';
 import { FormContext } from '../FormContext';
 import CompanyCell from './modules/CompanyCell';
 import KwhPriceCell from './modules/KwhPriceCell';
-import ProjectDetailsCell from './modules/ProjectDetailsCell';
+import PlanDetailsCell from './modules/PlanDetailsCell';
+import PricingCell from './modules/PricingCell';
 
 export default function Plan(props) {
   const [active, setActive] = useState(0); //Accordion active state (more details)
@@ -23,7 +24,13 @@ export default function Plan(props) {
     rating_total,
     price_kwh500,
     price_kwh1000,
-    price_kwh2000
+    price_kwh2000,
+    pricing_details,
+    renewable_energy_description: renewablePercent,
+    term_value: contractLength,
+    rate_type: planType,
+    fact_sheet: eflURL,
+    terms_of_service: termsURL
   } = props.plan;
 
   // Toggles accordion state
@@ -80,13 +87,17 @@ export default function Plan(props) {
       </Table.Header>
       <Table.Body>
         <Table.Row>
-          <ProjectDetailsCell name={plan_name} />
-          <Table.Cell>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-            esse culpa dicta illo. Sit earum, vitae voluptate repellat hic nihil
-            sed, sunt eligendi non commodi ullam corporis distinctio sequi
-            natus.
-          </Table.Cell>
+          <PlanDetailsCell
+            name={plan_name}
+            renewablePercent={renewablePercent}
+            planType={planType}
+            contractLength={contractLength}
+          />
+          <PricingCell
+            details={pricing_details}
+            eflURL={eflURL}
+            termsURL={termsURL}
+          />
         </Table.Row>
       </Table.Body>
     </Table>
@@ -126,7 +137,7 @@ export default function Plan(props) {
             >
               {moreDetailsTable}
               <div
-                className="plan-dropdown plan-dropup accordion-cursor"
+                className="plan-dropup accordion-cursor"
                 onClick={handleAccordionClick}
               >
                 <Icon
