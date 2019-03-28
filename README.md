@@ -2,6 +2,8 @@
 
 An app that allows you to compare and view Texas energy plans offered in your ZIP code.
 
+View a live demo here: https://kevhardy.github.io/energy-plans-viewer/
+
 ## Setup
 
 First, ensure that you have Node.js (version 6 or greater) and `npm` (preferably
