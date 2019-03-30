@@ -4,7 +4,7 @@ import '../styles/PlanViewer.css';
 import { FormContext } from './FormContext';
 import Plan from './Plan/Plan';
 
-export default function PlanViewer() {
+export default function PlansTable() {
   const { plans, setPlans, isLoading } = useContext(FormContext);
   const [sortedState, setSortState] = useState({
     column: null,
@@ -43,7 +43,7 @@ export default function PlanViewer() {
     });
   }
 
-  const plansOutput = plans.slice(0, 20).map(plan => {
+  const plansOutput = plans.map(plan => {
     return <Plan key={plan.plan_id} plan={plan} sortedState={sortedState} />;
   });
 

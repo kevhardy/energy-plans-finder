@@ -36,6 +36,7 @@ export default function App() {
       );
       let data = await ajax.json();
       console.dir(data);
+      console.dir(data.map(plan => plan.plan_id).sort());
       setPlans(data);
       setIsLoading(false);
     } catch (e) {

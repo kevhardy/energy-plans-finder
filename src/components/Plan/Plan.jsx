@@ -10,7 +10,7 @@ import PricingCell from './modules/PricingCell';
 
 export default function Plan(props) {
   const [active, setActive] = useState(0); //Accordion active state (more details)
-  const [isChecked, setIsChecked] = useState(false); //Compare checked state
+  const [isChecked, setIsChecked] = useState(false);
   const { compareList, setCompareList } = useContext(FormContext);
 
   // Which column and how it's sorted
@@ -40,14 +40,18 @@ export default function Plan(props) {
   }
 
   // Either adds or removes comparison click
+  // very slow, needs optimizing
   function handleCompareClick(e, data) {
     e.preventDefault();
+    console.log(e.target.value);
     if (data.checked) {
       setIsChecked(true);
-      setCompareList([...compareList, plan_id]);
+      setCompareList(compareList.concat([plan_id]));
+      console.log(compareList);
     } else {
       setIsChecked(false);
       setCompareList(compareList.filter(id => id !== plan_id));
+      console.log(compareList);
     }
   }
 
@@ -71,7 +75,11 @@ export default function Plan(props) {
         sortedState={sortedState}
       />
       <Table.Cell className="checkbox-cell" textAlign="right" collapsing>
-        <Checkbox onChange={handleCompareClick} />
+        <Checkbox
+          name="isChecked"
+          checked={isChecked}
+          onChange={handleCompareClick}
+        />
       </Table.Cell>
     </Table.Row>
   );

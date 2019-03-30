@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Header, Icon } from 'semantic-ui-react';
 import '../styles/Results.css';
-import PlanViewer from './PlanViewer';
+import PlansTable from './PlansTable';
 import ZipcodeForm from './ZipcodeForm';
 
 export default function Results(props) {
@@ -24,7 +24,7 @@ export default function Results(props) {
 
       <ZipcodeForm />
 
-      <PlanViewer />
+      <PlansTable />
     </div>
   );
 }

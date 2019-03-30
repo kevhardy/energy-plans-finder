@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Table } from 'semantic-ui-react';
 
-export default function KwhPriceCell(props) {
+export default React.memo(function KwhPriceCell(props) {
   const { sortedState, price, priceLevel } = props;
 
   return (
@@ -20,4 +20,4 @@ export default function KwhPriceCell(props) {
       </Header>
     </Table.Cell>
   );
-}
+});

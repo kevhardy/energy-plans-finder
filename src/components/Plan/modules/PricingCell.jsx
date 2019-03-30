@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, List, Table } from 'semantic-ui-react';
 
-export default function PricingCell(props) {
+export default React.memo(function PricingCell(props) {
   const { details, eflURL, termsURL } = props;
 
   /*TODO: parse details more efficiently
@@ -33,4 +33,4 @@ export default function PricingCell(props) {
       </List>
     </Table.Cell>
   );
-}
+});

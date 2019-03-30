@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Popup, Rating, Table } from 'semantic-ui-react';
 
-export default function CompanyCell(props) {
+export default React.memo(function CompanyCell(props) {
   const { logo, rating } = props;
 
   return (
@@ -40,4 +40,4 @@ export default function CompanyCell(props) {
       )}
     </Table.Cell>
   );
-}
+});

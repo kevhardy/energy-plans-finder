@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, Table } from 'semantic-ui-react';
 
-export default function PlanDetailsCell(props) {
+export default React.memo(function PlanDetailsCell(props) {
   const { name, contractLength, planType, renewablePercent } = props;
 
   return (
@@ -27,4 +27,4 @@ export default function PlanDetailsCell(props) {
       </List>
     </Table.Cell>
   );
-}
+});
