@@ -1,6 +1,11 @@
-.ui.table.plan-viewer {
+.ui.table.plan-table {
   width: 98%;
-  margin: 0.75rem 1%;
+  margin: 0.75rem auto;
+  max-width: 1250px;
+}
+
+.ui.sortable.table thead th.checkbox-headerCell {
+  border-left: 0;
 }
 
 .kwh-header {

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Loader, Table } from 'semantic-ui-react';
 import '../styles/PlansTable.css';
 import { FormContext } from './FormContext';
-import useWindowWidth from './hooks/useWindowWidth';
 import Plan from './Plan/Plan';
 import PlansTableHeader from './PlansTableHeader';
 
@@ -12,7 +11,6 @@ export default function PlansTable() {
     column: null,
     direction: null
   });
-  const width = useWindowWidth();
 
   useEffect(() => {
     if (isLoading) {
@@ -59,7 +57,7 @@ export default function PlansTable() {
   });
 
   return (
-    <Table className="plan-viewer" sortable unstackable>
+    <Table className="plan-table" sortable unstackable>
       <PlansTableHeader
         sortedState={sortedState}
         isLoading={isLoading}

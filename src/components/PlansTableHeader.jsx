@@ -24,8 +24,8 @@ export default React.memo(function PlansTableHeader(props) {
           collapsing
           textAlign="center"
         >
-          500
-          <p className="kwh-header">kWh</p>
+          500 <br />
+          <span className="kwh-header">kWh</span>
         </Table.HeaderCell>
         <Table.HeaderCell
           sorted={sortedState.column === '1000' ? sortedState.direction : null}
@@ -33,8 +33,8 @@ export default React.memo(function PlansTableHeader(props) {
           collapsing
           textAlign="center"
         >
-          1000
-          <p className="kwh-header">kWh</p>
+          1000 <br />
+          <span className="kwh-header">kWh</span>
         </Table.HeaderCell>
         <Table.HeaderCell
           sorted={sortedState.column === '2000' ? sortedState.direction : null}
@@ -42,10 +42,10 @@ export default React.memo(function PlansTableHeader(props) {
           collapsing
           textAlign="center"
         >
-          2000
-          <p className="kwh-header">kWh</p>
+          2000 <br />
+          <span className="kwh-header">kWh</span>
         </Table.HeaderCell>
-        <Table.HeaderCell />
+        <Table.HeaderCell className="checkbox-headerCell" />
       </Table.Row>
     </Table.Header>
   );
