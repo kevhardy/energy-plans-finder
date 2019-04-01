@@ -47,11 +47,9 @@ export default function Plan(props) {
     if (data.checked) {
       setIsChecked(true);
       setCompareList(compareList.concat([plan_id]));
-      console.log(compareList);
     } else {
       setIsChecked(false);
       setCompareList(compareList.filter(id => id !== plan_id));
-      console.log(compareList);
     }
   }
 

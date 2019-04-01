@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Loader, Table } from 'semantic-ui-react';
-import '../styles/PlanViewer.css';
+import '../styles/PlansTable.css';
 import { FormContext } from './FormContext';
 import Plan from './Plan/Plan';
+import PlansTableHeader from './PlansTableHeader';
 
 export default function PlansTable() {
   const { plans, setPlans, isLoading } = useContext(FormContext);
@@ -11,7 +12,15 @@ export default function PlansTable() {
     direction: null
   });
 
-  // TODO: sorting plans and then searching for new zipcode will break sort
+  useEffect(() => {
+    if (isLoading) {
+      setSortState({
+        column: null,
+        direction: null
+      });
+    }
+  });
+
   function handleSort(clickedColumn) {
     // First time column is clicked, sort ascending
     if (sortedState.column !== clickedColumn) {
@@ -48,66 +57,27 @@ export default function PlansTable() {
   });
 
   return (
-    <div className="plan-viewer">
-      <Table sortable unstackable>
-        <Table.Header>
-          <Table.Row disabled={isLoading}>
-            <Table.HeaderCell textAlign="left">Company</Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={
-                sortedState.column === '500' ? sortedState.direction : null
-              }
-              onClick={() => handleSort('500')}
-              collapsing
-              textAlign="center"
-            >
-              500
-              <br />
-              <span style={{ fontSize: '.7rem' }}>kWh</span>
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={
-                sortedState.column === '1000' ? sortedState.direction : null
-              }
-              onClick={() => handleSort('1000')}
-              collapsing
-              textAlign="center"
-            >
-              1000
-              <br />
-              <span style={{ fontSize: '.7rem' }}>kWh</span>
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={
-                sortedState.column === '2000' ? sortedState.direction : null
-              }
-              onClick={() => handleSort('2000')}
-              collapsing
-              textAlign="center"
-            >
-              2000
-              <br />
-              <span style={{ fontSize: '.7rem' }}>kWh</span>
-            </Table.HeaderCell>
-            <Table.HeaderCell />
+    <Table className="plan-viewer" sortable unstackable>
+      <PlansTableHeader
+        sortedState={sortedState}
+        isLoading={isLoading}
+        handleSort={handleSort}
+      />
+      <Table.Body>
+        {isLoading ? (
+          <Table.Row>
+            <Table.Cell colSpan="12">
+              <Loader active={isLoading} inline="centered" />
+            </Table.Cell>
           </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {isLoading ? (
-            <Table.Row>
-              <Table.Cell colSpan="12">
-                <Loader active={isLoading} inline="centered" />
-              </Table.Cell>
-            </Table.Row>
-          ) : plansOutput.length ? (
-            plansOutput
-          ) : (
-            <Table.Row>
-              <Table.Cell>{'No results found.'}</Table.Cell>
-            </Table.Row>
-          )}
-        </Table.Body>
-      </Table>
-    </div>
+        ) : plans.length ? (
+          plansOutput
+        ) : (
+          <Table.Row>
+            <Table.Cell colSpan="12">No results found.</Table.Cell>
+          </Table.Row>
+        )}
+      </Table.Body>
+    </Table>
   );
 }
