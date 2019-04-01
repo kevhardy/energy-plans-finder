@@ -85,6 +85,10 @@
   font-size: 0.85em;
 }
 
+.ui.table tr.positive {
+  color: inherit !important;
+}
+
 /* Overriding sortable tag on nested table from semantics ui */
 .ui.table.details-table thead th {
   cursor: default;
@@ -94,4 +98,10 @@
 .ui.table.details-table thead th:hover {
   background: rgb(249, 250, 251);
   color: rgba(0, 0, 0, 0.87);
+}
+
+@media only screen and (min-width: 768px) {
+  .ui.table tr td {
+    border-top: 1px solid rgba(34, 36, 38, 0.1);
+  }
 }
