@@ -1,10 +1,8 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
-import useWindowWidth from './hooks/useWindowWidth';
 
 export default React.memo(function PlansTableHeader(props) {
-  const { isLoading, sortedState, handleSort } = props;
-  const width = useWindowWidth();
+  const { isLoading, sortedState, handleSort, width } = props;
 
   return (
     <Table.Header>

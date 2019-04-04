@@ -11,9 +11,7 @@ function reducer(state, action) {
       return {
         ...state,
         plans: action.plans,
-        filteredPlans: action.plans.map(plan => {
-          return plan.plan_id;
-        })
+        filteredPlans: action.plans.slice()
       };
     case 'loading':
       return { ...state, isLoading: !state.isLoading };
@@ -25,11 +23,36 @@ function reducer(state, action) {
         comparePlans: state.comparePlans.filter(id => id !== action.planID)
       };
     case 'sort':
-      const sorted = 0;
-      return {
-        ...state,
-        filteredPlans: sorted
-      };
+      switch (action.column) {
+        case '500':
+          return {
+            ...state,
+            filteredPlans: state.filteredPlans
+              .slice()
+              .sort((x, y) => x.price_kwh500 - y.price_kwh500)
+          };
+        case '1000':
+          return {
+            ...state,
+            filteredPlans: state.filteredPlans
+              .slice()
+              .sort((x, y) => x.price_kwh1000 - y.price_kwh1000)
+          };
+        case '2000':
+          return {
+            ...state,
+            filteredPlans: state.filteredPlans
+              .slice()
+              .sort((x, y) => x.price_kwh2000 - y.price_kwh2000)
+          };
+        case 'reverse':
+          return {
+            ...state,
+            filteredPlans: state.filteredPlans.slice().reverse()
+          };
+        default:
+          return state;
+      }
     default:
       return state;
   }
@@ -72,7 +95,6 @@ export default function App() {
     dispatch({ type: 'loading' });
     const newPlans = await fetchPlans(zipcode);
     if (newPlans) {
-      newPlans.sort((x, y) => x.plan_id - y.plan_id);
       await dispatch({ type: 'update', plans: newPlans });
     }
     await dispatch({ type: 'loading' });

@@ -7,7 +7,7 @@ import Plan from './Plan/Plan';
 import PlansTableHeader from './PlansTableHeader';
 
 export default function PlansTable() {
-  const { state, setPlans } = useContext(FormContext);
+  const { state, dispatch } = useContext(FormContext);
   const { plans, filteredPlans, isLoading } = state;
   const [sortedState, setSortState] = useState({
     column: null,
@@ -31,31 +31,20 @@ export default function PlansTable() {
         column: clickedColumn,
         direction: 'ascending'
       });
-      switch (clickedColumn) {
-        case '500':
-          setPlans(plans.sort((x, y) => x.price_kwh500 - y.price_kwh500));
-          break;
-        case '1000':
-          setPlans(plans.sort((x, y) => x.price_kwh1000 - y.price_kwh1000));
-          break;
-        case '2000':
-          setPlans(plans.sort((x, y) => x.price_kwh2000 - y.price_kwh2000));
-          break;
-        default:
-      }
+      dispatch({ type: 'sort', column: clickedColumn });
       return;
     }
 
-    // If column is clicked again, reverses order and sets direction state
-    setPlans(plans.reverse());
+    // If column is clicked again, reverses order
     setSortState({
       column: sortedState.column,
       direction:
         sortedState.direction === 'ascending' ? 'descending' : 'ascending'
     });
+    dispatch({ type: 'sort', column: 'reverse' });
   }
 
-  const plansOutput = plans.slice(0, 19).map(plan => {
+  const plansOutput = filteredPlans.slice(0, 19).map(plan => {
     return (
       <Plan
         key={plan.plan_id}
@@ -72,6 +61,7 @@ export default function PlansTable() {
         sortedState={sortedState}
         isLoading={isLoading}
         handleSort={handleSort}
+        width={width}
       />
       <Table.Body>
         {isLoading ? (
