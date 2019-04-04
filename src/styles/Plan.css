@@ -100,6 +100,15 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+/* Prevents table headers that aren't sortable from appearing clickable */
+.ui.table.plan-table thead .checkbox-header:hover,
+.ui.table.plan-table thead .details-header:hover,
+.ui.table.plan-table thead .pricing-header:hover {
+  cursor: default;
+  background: rgb(249, 250, 251);
+  color: rgba(0, 0, 0, 0.87);
+}
+
 @media only screen and (min-width: 768px) {
   .ui.table tr td {
     border-top: 1px solid rgba(34, 36, 38, 0.1);

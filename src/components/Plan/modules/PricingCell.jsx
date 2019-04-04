@@ -6,7 +6,7 @@ export default React.memo(function PricingCell(props) {
 
   /*TODO: parse details more efficiently
   Currently very hacky when details is a per month cancellation fee or $0.00 */
-  const cancelFee = details.slice(details.indexOf('$') + 1, details.length);
+  const cancelFee = details.slice(details.lastIndexOf('$') + 1, details.length);
 
   return (
     <Table.Cell>

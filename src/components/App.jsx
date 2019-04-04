@@ -1,58 +1,73 @@
-import React, { useState } from 'react';
+import React, { useCallback, useReducer } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import '../styles/App.css';
 import { FormContext } from './FormContext';
 import Home from './Home';
 import Results from './Results';
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'update':
+      return { ...state, plans: action.plans };
+    case 'loading':
+      return { ...state, isLoading: !state.isLoading };
+    case 'addCompare':
+      return { ...state, comparePlans: [...state.comparePlans, action.planID] };
+    case 'removeCompare':
+      return {
+        ...state,
+        comparePlans: state.comparePlans.filter(id => id !== action.planID)
+      };
+    default:
+      return state;
+  }
+}
+
+async function fetchPlans(zipcode) {
+  try {
+    const ajax = await fetch(
+      `https://cors-anywhere.herokuapp.com/http://www.powertochoose.org/en-us/service/v1/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          parameters: {
+            method: 'plans',
+            zip_code: zipcode
+          }
+        })
+      }
+    );
+    let data = await ajax.json();
+    console.dir(data);
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export default function App() {
-  const [plans, setPlans] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [compareList, setCompareList] = useState([]);
+  const [state, dispatch] = useReducer(reducer, {
+    plans: [],
+    comparePlans: [],
+    isLoading: false
+  });
 
-  function handleZipSubmit(zipcode) {
-    setIsLoading(true);
-    // Regex for 5 digit zip code
-    if (!/^[0-9]{5}$/.test(zipcode)) setPlans([]);
-    else fetchPlans(zipcode);
-  }
-
-  async function fetchPlans(zipcode) {
-    try {
-      const ajax = await fetch(
-        `https://cors-anywhere.herokuapp.com/http://www.powertochoose.org/en-us/service/v1/`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            parameters: {
-              method: 'plans',
-              zip_code: zipcode
-            }
-          })
-        }
-      );
-      let data = await ajax.json();
-      console.dir(data);
-      console.dir(data.map(plan => plan.plan_id).sort());
-      setPlans(data);
-      setIsLoading(false);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  const handleZipSubmit = useCallback(async zipcode => {
+    dispatch({ type: 'loading' });
+    const newPlans = await fetchPlans(zipcode);
+    dispatch({ type: 'update', plans: newPlans });
+    dispatch({ type: 'loading' });
+  }, []);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <FormContext.Provider
         value={{
-          plans,
-          setPlans,
-          isLoading,
-          compareList,
-          setCompareList,
+          state,
+          dispatch,
           handleZipSubmit
         }}
       >

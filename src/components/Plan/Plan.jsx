@@ -10,9 +10,8 @@ import PlanDetailsCell from './modules/PlanDetailsCell';
 import PricingCell from './modules/PricingCell';
 
 export default function Plan(props) {
-  //Accordion active state (more details)
   const [isChecked, setIsChecked] = useState(false);
-  const { compareList, setCompareList } = useContext(FormContext);
+  const { dispatch } = useContext(FormContext);
   const width = useWindowWidth();
 
   // Which column and how it's sorted
@@ -46,10 +45,10 @@ export default function Plan(props) {
     console.log(e.target.value);
     if (data.checked) {
       setIsChecked(true);
-      setCompareList(compareList.concat([plan_id]));
+      dispatch({ type: 'addCompare', planID: plan_id });
     } else {
       setIsChecked(false);
-      setCompareList(compareList.filter(id => id !== plan_id));
+      dispatch({ type: 'removeCompare', planID: plan_id });
     }
   }
 

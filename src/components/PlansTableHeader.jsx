@@ -13,8 +13,12 @@ export default React.memo(function PlansTableHeader(props) {
 
         {width >= 768 && (
           <React.Fragment>
-            <Table.HeaderCell textAlign="center">Plan Details</Table.HeaderCell>
-            <Table.HeaderCell textAlign="center">Pricing</Table.HeaderCell>
+            <Table.HeaderCell className="details-header" textAlign="center">
+              Plan Details
+            </Table.HeaderCell>
+            <Table.HeaderCell className="pricing-header" textAlign="center">
+              Pricing
+            </Table.HeaderCell>
           </React.Fragment>
         )}
 
@@ -45,7 +49,7 @@ export default React.memo(function PlansTableHeader(props) {
           2000 <br />
           <span className="kwh-header">kWh</span>
         </Table.HeaderCell>
-        <Table.HeaderCell className="checkbox-headerCell" />
+        <Table.HeaderCell className="checkbox-header" />
       </Table.Row>
     </Table.Header>
   );

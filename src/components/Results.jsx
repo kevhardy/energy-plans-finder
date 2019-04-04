@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Divider, Header, Icon } from 'semantic-ui-react';
 import '../styles/Results.css';
 import PlansTable from './PlansTable';
 import ZipcodeForm from './ZipcodeForm';
 
 export default function Results(props) {
-  function goHome() {
+  const goHome = useCallback(() => {
     props.history.push('/');
-  }
+  }, []);
 
   return (
     <div>

@@ -7,7 +7,7 @@ import { FormContext } from './FormContext';
 
 function ZipcodeForm(props) {
   const [zipcode, setZipcode] = useState('');
-  const { isLoading, handleZipSubmit } = useContext(FormContext);
+  const { state, handleZipSubmit } = useContext(FormContext);
 
   useEffect(() => {
     if (props.location.pathname === '/app/results') {
@@ -15,8 +15,13 @@ function ZipcodeForm(props) {
         props.location.search
       );
 
-      if (initialZipcode) setZipcode(initialZipcode);
-      if (!isLoading) handleZipSubmit(initialZipcode);
+      if (initialZipcode && /^[0-9]{5}$/.test(initialZipcode)) {
+        setZipcode(initialZipcode);
+        if (!state.isLoading) handleZipSubmit(initialZipcode);
+      } else {
+        // Invalid query string
+        setZipcode('');
+      }
     }
   }, []);
 
@@ -29,8 +34,14 @@ function ZipcodeForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.history.push(`/app/results?zipcode=${zipcode}`);
-    handleZipSubmit(zipcode);
+
+    // Verify 5 input is a 5 digit zipcode
+    if (/^[0-9]{5}$/.test(zipcode)) {
+      props.history.push(`/app/results?zipcode=${zipcode}`);
+      handleZipSubmit(zipcode);
+    } else {
+      // TODO: Display invalid zipcode error
+    }
   }
 
   return (
@@ -46,7 +57,7 @@ function ZipcodeForm(props) {
             autoComplete="off"
             focus
             placeholder="Enter ZIP Code"
-            loading={isLoading}
+            loading={state.isLoading}
           >
             <input />
             <Icon name="search" link onClick={handleSubmit} />

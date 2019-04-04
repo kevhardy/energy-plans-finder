@@ -6,7 +6,8 @@ import Plan from './Plan/Plan';
 import PlansTableHeader from './PlansTableHeader';
 
 export default function PlansTable() {
-  const { plans, setPlans, isLoading } = useContext(FormContext);
+  const { state, setPlans } = useContext(FormContext);
+  const { plans, isLoading } = state;
   const [sortedState, setSortState] = useState({
     column: null,
     direction: null
@@ -52,7 +53,7 @@ export default function PlansTable() {
     });
   }
 
-  const plansOutput = plans.slice(0, 10).map(plan => {
+  const plansOutput = plans.map(plan => {
     return <Plan key={plan.plan_id} plan={plan} sortedState={sortedState} />;
   });
 
