@@ -15,15 +15,19 @@ function reducer(state, action) {
         plans: action.plans,
         filteredPlans: action.plans.slice()
       };
+
     case 'loading':
       return { ...state, isLoading: !state.isLoading };
+
     case 'addCompare':
       return { ...state, comparePlans: [...state.comparePlans, action.planID] };
+
     case 'removeCompare':
       return {
         ...state,
         comparePlans: state.comparePlans.filter(id => id !== action.planID)
       };
+
     case 'sort':
       switch (action.column) {
         case '500':
@@ -33,6 +37,7 @@ function reducer(state, action) {
               .slice()
               .sort((x, y) => x.price_kwh500 - y.price_kwh500)
           };
+
         case '1000':
           return {
             ...state,
@@ -40,6 +45,7 @@ function reducer(state, action) {
               .slice()
               .sort((x, y) => x.price_kwh1000 - y.price_kwh1000)
           };
+
         case '2000':
           return {
             ...state,
@@ -47,6 +53,7 @@ function reducer(state, action) {
               .slice()
               .sort((x, y) => x.price_kwh2000 - y.price_kwh2000)
           };
+
         case 'company':
           return {
             ...state,
@@ -58,11 +65,13 @@ function reducer(state, action) {
               return 0;
             })
           };
+
         case 'reverse':
           return {
             ...state,
             filteredPlans: state.filteredPlans.slice().reverse()
           };
+
         default:
           return state;
       }
