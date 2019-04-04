@@ -45,6 +45,17 @@ function reducer(state, action) {
               .slice()
               .sort((x, y) => x.price_kwh2000 - y.price_kwh2000)
           };
+        case 'company':
+          return {
+            ...state,
+            filteredPlans: state.filteredPlans.slice().sort((x, y) => {
+              const companyA = x.company_name.toLowerCase();
+              const companyB = y.company_name.toLowerCase();
+              if (companyA < companyB) return -1;
+              if (companyA > companyB) return 1;
+              return 0;
+            })
+          };
         case 'reverse':
           return {
             ...state,
@@ -97,6 +108,7 @@ export default function App() {
     if (newPlans) {
       await dispatch({ type: 'update', plans: newPlans });
     }
+    console.log(newPlans);
     await dispatch({ type: 'loading' });
   }, []);
 

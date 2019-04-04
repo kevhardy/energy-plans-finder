@@ -7,7 +7,15 @@ export default React.memo(function PlansTableHeader(props) {
   return (
     <Table.Header>
       <Table.Row disabled={isLoading}>
-        <Table.HeaderCell textAlign="left">Company</Table.HeaderCell>
+        <Table.HeaderCell
+          sorted={
+            sortedState.column === 'company' ? sortedState.direction : null
+          }
+          onClick={() => handleSort('company')}
+          textAlign="left"
+        >
+          Company
+        </Table.HeaderCell>
 
         {width >= 768 && (
           <React.Fragment>

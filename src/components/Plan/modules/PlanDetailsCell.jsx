@@ -5,11 +5,11 @@ export default React.memo(function PlanDetailsCell(props) {
   const { name, contractLength, planType, renewablePercent } = props;
 
   return (
-    <Table.Cell singleLine>
+    <Table.Cell className="details-cell" singleLine>
       <List>
         <List.Item>
           <List.Header>Plan Name</List.Header>
-          {name}
+          {name.length < 26 ? name : name.slice(0, 25) + '...'}
         </List.Item>
         <List.Item>
           <List.Header>Contract Length</List.Header>

@@ -109,6 +109,10 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+.details-cell {
+  max-width: 17rem;
+}
+
 @media only screen and (min-width: 768px) {
   .ui.table tr td {
     border-top: 1px solid rgba(34, 36, 38, 0.1);
