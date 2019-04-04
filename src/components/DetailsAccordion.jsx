@@ -26,11 +26,11 @@ export default function DetailsAccordion(props) {
 
   // Table of details that goes inside accordion
   const moreDetailsTable = (
-    <Table className="details-table" unstackable>
+    <Table className="details-table" columns={2} unstackable>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>Plan Details</Table.HeaderCell>
-          <Table.HeaderCell>Pricing</Table.HeaderCell>
+          <Table.HeaderCell width={1}>Plan Details</Table.HeaderCell>
+          <Table.HeaderCell width={1}>Pricing</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>

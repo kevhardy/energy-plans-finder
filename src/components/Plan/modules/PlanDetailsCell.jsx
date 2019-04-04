@@ -5,7 +5,7 @@ export default React.memo(function PlanDetailsCell(props) {
   const { name, contractLength, planType, renewablePercent } = props;
 
   return (
-    <Table.Cell>
+    <Table.Cell singleLine>
       <List>
         <List.Item>
           <List.Header>Plan Name</List.Header>

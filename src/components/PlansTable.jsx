@@ -2,16 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Loader, Table } from 'semantic-ui-react';
 import '../styles/PlansTable.css';
 import { FormContext } from './FormContext';
+import useWindowWidth from './hooks/useWindowWidth';
 import Plan from './Plan/Plan';
 import PlansTableHeader from './PlansTableHeader';
 
 export default function PlansTable() {
   const { state, setPlans } = useContext(FormContext);
-  const { plans, isLoading } = state;
+  const { plans, filteredPlans, isLoading } = state;
   const [sortedState, setSortState] = useState({
     column: null,
     direction: null
   });
+  const width = useWindowWidth();
 
   useEffect(() => {
     if (isLoading) {
@@ -53,8 +55,15 @@ export default function PlansTable() {
     });
   }
 
-  const plansOutput = plans.map(plan => {
-    return <Plan key={plan.plan_id} plan={plan} sortedState={sortedState} />;
+  const plansOutput = plans.slice(0, 19).map(plan => {
+    return (
+      <Plan
+        key={plan.plan_id}
+        plan={plan}
+        sortedState={sortedState}
+        width={width}
+      />
+    );
   });
 
   return (

@@ -8,7 +8,13 @@ import Results from './Results';
 function reducer(state, action) {
   switch (action.type) {
     case 'update':
-      return { ...state, plans: action.plans };
+      return {
+        ...state,
+        plans: action.plans,
+        filteredPlans: action.plans.map(plan => {
+          return plan.plan_id;
+        })
+      };
     case 'loading':
       return { ...state, isLoading: !state.isLoading };
     case 'addCompare':
@@ -17,6 +23,12 @@ function reducer(state, action) {
       return {
         ...state,
         comparePlans: state.comparePlans.filter(id => id !== action.planID)
+      };
+    case 'sort':
+      const sorted = 0;
+      return {
+        ...state,
+        filteredPlans: sorted
       };
     default:
       return state;
@@ -41,16 +53,17 @@ async function fetchPlans(zipcode) {
       }
     );
     let data = await ajax.json();
-    console.dir(data);
     return data;
   } catch (e) {
     console.error(e);
+    return null;
   }
 }
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, {
     plans: [],
+    filteredPlans: [],
     comparePlans: [],
     isLoading: false
   });
@@ -58,8 +71,11 @@ export default function App() {
   const handleZipSubmit = useCallback(async zipcode => {
     dispatch({ type: 'loading' });
     const newPlans = await fetchPlans(zipcode);
-    dispatch({ type: 'update', plans: newPlans });
-    dispatch({ type: 'loading' });
+    if (newPlans) {
+      newPlans.sort((x, y) => x.plan_id - y.plan_id);
+      await dispatch({ type: 'update', plans: newPlans });
+    }
+    await dispatch({ type: 'loading' });
   }, []);
 
   return (

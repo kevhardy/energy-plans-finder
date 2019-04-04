@@ -3,7 +3,6 @@ import { Checkbox, Table } from 'semantic-ui-react';
 import '../../styles/Plan.css';
 import DetailsAccordion from '../DetailsAccordion';
 import { FormContext } from '../FormContext';
-import useWindowWidth from '../hooks/useWindowWidth';
 import CompanyCell from './modules/CompanyCell';
 import KwhPriceCell from './modules/KwhPriceCell';
 import PlanDetailsCell from './modules/PlanDetailsCell';
@@ -12,10 +11,9 @@ import PricingCell from './modules/PricingCell';
 export default function Plan(props) {
   const [isChecked, setIsChecked] = useState(false);
   const { dispatch } = useContext(FormContext);
-  const width = useWindowWidth();
 
   // Which column and how it's sorted
-  const { sortedState } = props;
+  const { sortedState, width } = props;
 
   // Details of plan for main content
   const {
@@ -42,7 +40,6 @@ export default function Plan(props) {
   // very slow, needs optimizing
   function handleCompareClick(e, data) {
     e.preventDefault();
-    console.log(e.target.value);
     if (data.checked) {
       setIsChecked(true);
       dispatch({ type: 'addCompare', planID: plan_id });
