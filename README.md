@@ -1,6 +1,6 @@
-# Texas Energy Plan Viewer
+# Texas Energy Plan Finder
 
-An app that allows you to compare and view Texas energy plans offered in your ZIP code.
+An app that allows you to find, sort, and compare Texas energy plans offered in your ZIP code.
 
 View a live demo here: https://kevhardy.github.io/energy-plans-viewer/
 
